@@ -6,17 +6,22 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnStep = 1f;
-    private const float LifeTime = .5f;
+    [SerializeField] private int enemyCount = 20;
+    //private const float LifeTime = .5f;
 
     private float nextSpawnTime;
 
     private void Update()
     {
-        if (Time.time > nextSpawnTime)
+        while (enemyCount > 0)
         {
+            if (Time.time > nextSpawnTime)
+            {
                 var enemy = Instantiate(enemyPrefab, transform);
                 nextSpawnTime = Time.time + spawnStep;
-                Destroy(enemy.gameObject, LifeTime);
+                //Destroy(enemy.gameObject, LifeTime);
+                enemyCount--;
+            }
         }
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 8f;
-    [SerializeField] private float gravity = -20f;
-    [SerializeField] private float fireCoolDown = 0.5f;
+    [SerializeField] private float speed = 5f;
+    //[SerializeField] private float gravity = -20f;
+    //[SerializeField] private float fireCoolDown = 0.5f;
     //[SerializeField] private float fireCoolDown = -20f;
 
     private Vector3 direction;
