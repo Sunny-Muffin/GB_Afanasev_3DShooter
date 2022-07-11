@@ -18,7 +18,10 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
-
+    
+    
+    // надо бы звук на столкновения сделать
+    // мб еще эффект от столкновения
 }

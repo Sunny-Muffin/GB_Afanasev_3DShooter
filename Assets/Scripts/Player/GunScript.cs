@@ -30,10 +30,10 @@ public class GunScript : MonoBehaviour
     {
         var bulletGameObject = Instantiate( bulletPrefab, transform.position, transform.rotation);
         Rigidbody rb = bulletGameObject.GetComponent<Rigidbody>();
-        rb.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
+        //rb.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
+        rb.velocity = transform.forward * speed;
+
+        // audio
+        // particle system
     }
-        
-    //audioManager.Play("Shot");
-    //ParticleSystem.Play();
-    //Debug.Log($"x = {gunPoint.transform.rotation.x}, y = {gunPoint.transform.rotation.y}, z = {gunPoint.transform.rotation.z}");
 }

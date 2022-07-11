@@ -28,6 +28,7 @@ public class EnemyHealthScript : MonoBehaviour
             {
                 enemyHP = 0;
                 Destroy(gameObject);
+                EnemyCounterScript.EnemyKilled();
                 // particle system
                 // sound
             }

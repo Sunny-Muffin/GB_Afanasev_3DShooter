@@ -6,7 +6,7 @@ public class ExplosionScript : MonoBehaviour
 {
     [SerializeField] private int barrelHP = 3;
     [SerializeField] private ParticleSystem explosion;
-
+    private static bool boom = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,10 +30,23 @@ public class ExplosionScript : MonoBehaviour
             {
                 barrelHP = 0;
                 Instantiate(explosion, transform.position, Quaternion.identity);
-                //
+                boom = true;
                 // sound
                 Destroy(gameObject);
+            }
+        }
+    }
 
+    static void OnTriggerEnter(Collider other)
+    {
+        // не работает!!!, пока не придумал как реализовать урон от взрыва
+        if (boom == true)
+        {
+            if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
+            {
+                // а надо ли здесь делать массив объектов?..
+                // здесь лучше обращаться к скриптам здоровья, которых пока нет
+                Destroy(other.gameObject);
             }
         }
     }

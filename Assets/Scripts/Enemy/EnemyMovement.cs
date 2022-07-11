@@ -5,9 +5,6 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    //[SerializeField] private float gravity = -20f;
-    //[SerializeField] private float fireCoolDown = 0.5f;
-    //[SerializeField] private float fireCoolDown = -20f;
 
     private Vector3 direction;
     private float step;
@@ -29,15 +26,5 @@ public class EnemyMovement : MonoBehaviour
         //Shoot();
     }
 
-    /*
-    private void Shoot()
-    {
-        if (Time.time > nextSpawnTime)
-        {
-            var enemy = Instantiate(enemyPrefab, transform);
-            nextSpawnTime = Time.time + spawnStep;
-            Destroy(enemy.gameObject, LifeTime);
-        }
-    }
-    */
+
 }
