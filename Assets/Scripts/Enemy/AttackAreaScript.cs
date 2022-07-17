@@ -25,7 +25,7 @@ public class AttackAreaScript : MonoBehaviour
         {
             if (Time.time > nextHitTime)
             {
-                Debug.Log("Hit player!");
+                //Debug.Log("Hit player!");
                 nextHitTime = Time.time + hitCoolDown;
                 // создать скрипт здоровья игрока, вызывать его здесь
             }

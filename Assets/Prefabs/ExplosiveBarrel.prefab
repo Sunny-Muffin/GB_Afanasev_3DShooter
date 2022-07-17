@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2485541547986316637}
   - component: {fileID: 2485541547986316625}
   - component: {fileID: 2485541547986316630}
+  - component: {fileID: 3922141584247867590}
   m_Layer: 0
   m_Name: ExplosiveBarrel
   m_TagString: Untagged
@@ -125,5 +126,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2450435daac2a24db9679390127de5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrelHP: 3
   explosion: {fileID: 6758633157789837010, guid: 75d919332647a524da8e44363ebbcd5a, type: 3}
+  explosionDamage: 100
+  explosionSound: {fileID: 8300000, guid: 8b3f676fe7b41044495a2964396b8ba3, type: 3}
+--- !u!114 &3922141584247867590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485541547986316636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b360000b8647d449b11c198989477e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 60
+  curHealth: 0
+  deathTime: 0
