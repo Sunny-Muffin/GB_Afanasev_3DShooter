@@ -4,50 +4,51 @@ using UnityEngine;
 
 public class ExplosionScript : MonoBehaviour
 {
-    [SerializeField] private int barrelHP = 3;
     [SerializeField] private ParticleSystem explosion;
-    private static bool boom = false;
+    [SerializeField] private float explosionDamage;
+    [SerializeField] private float explosionTime = 2f;
+    [SerializeField] private AudioClip explosionSound;
+    private List<GameObject> gameObjects = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
+    public void Boom ()
     {
-        
+        var exp = Instantiate(explosion, transform.position, Quaternion.identity);
+        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+        ExplosionDamage(explosionDamage);
+        Destroy(gameObject);
+        Destroy(exp, explosionTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ExplosionDamage (float damage)
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Bullet")
+        foreach (var obj in gameObjects)
         {
-            barrelHP--;
-            Destroy(collision.gameObject); // а надо ли? отскакивает прикольно
-            if (barrelHP < 0)
+            obj.GetComponent<HealthManager>().Hit(damage);
+            //Debug.Log(obj.name);
+        }
+        //Debug.Log("BOOOM!!");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out HealthManager health))
+        {
+            foreach (var obj in gameObjects)
             {
-                barrelHP = 0;
-                Instantiate(explosion, transform.position, Quaternion.identity);
-                boom = true;
-                // sound
-                Destroy(gameObject);
+                if (obj.name == other.name)
+                    return;
             }
+            gameObjects.Add(other.gameObject);
+            //Debug.Log($"{other.gameObject.name} added to list");
         }
     }
 
-    static void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        // не работает!!!, пока не придумал как реализовать урон от взрыва
-        if (boom == true)
+        if (other.TryGetComponent(out HealthManager health))
         {
-            if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
-            {
-                // а надо ли здесь делать массив объектов?..
-                // здесь лучше обращаться к скриптам здоровья, которых пока нет
-                Destroy(other.gameObject);
-            }
+            gameObjects.Remove(other.gameObject);
+            //Debug.Log($"{other.gameObject.name} removed from list");
         }
     }
 }
