@@ -21,12 +21,6 @@ public class Turret : MonoBehaviour
         player = GameObject.FindObjectOfType<PlayerMovement>().transform;
     }
 
-    void Update()
-    {
-        Shoot();
-        LookAtPlayer();
-    }
-
     private void Shoot()
     {
         if (Time.time > nextBulletTime)
@@ -43,5 +37,16 @@ public class Turret : MonoBehaviour
         Vector3 direction = player.transform.position - transform.position;
         Vector3 rotation = Vector3.RotateTowards(transform.forward, direction, angularSpeed * Time.deltaTime, 0f);
         transform.rotation = Quaternion.LookRotation(rotation);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("Somethig in trigger");
+        if(other.gameObject.tag == "Player")
+        {
+            Debug.Log("Player in trigger");
+            Shoot();
+            LookAtPlayer();
+        }
     }
 }
