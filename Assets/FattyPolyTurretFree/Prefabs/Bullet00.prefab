@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4485476488557288}
-  - component: {fileID: 4443672854646645897}
-  - component: {fileID: 7514052498681021185}
-  - component: {fileID: 5870065598708287333}
+  - component: {fileID: -7840279406746978966}
+  - component: {fileID: 1873162906912882082}
+  - component: {fileID: -8940560692994793468}
   m_Layer: 0
   m_Name: Bullet00
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4443672854646645897
+--- !u!114 &-7840279406746978966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,7 +51,7 @@ MonoBehaviour:
   lifetime: 2
   speed: 20
   isTurret: 1
---- !u!136 &7514052498681021185
+--- !u!136 &1873162906912882082
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,10 +62,10 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 0.75
+  m_Height: 0.8
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &5870065598708287333
+--- !u!54 &-8940560692994793468
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,7 +79,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1819444565037150
 GameObject:

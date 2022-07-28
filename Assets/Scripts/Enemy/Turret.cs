@@ -41,10 +41,10 @@ public class Turret : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Somethig in trigger");
+        //Debug.Log("Somethig in trigger");
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("Player in trigger");
+            //Debug.Log("Player in trigger");
             Shoot();
             LookAtPlayer();
         }
