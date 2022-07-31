@@ -7,14 +7,10 @@ public class GunScript : MonoBehaviour
     [SerializeField] private float gunCoolDown = 0.5f;
     [SerializeField] private float speed = 30f;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private AudioClip shootSound;
 
     private float nextBulletTime;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -30,10 +26,9 @@ public class GunScript : MonoBehaviour
     {
         var bulletGameObject = Instantiate( bulletPrefab, transform.position, transform.rotation);
         Rigidbody rb = bulletGameObject.GetComponent<Rigidbody>();
-        //rb.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
         rb.velocity = transform.forward * speed;
-
-        // audio
+        AudioSource.PlayClipAtPoint(shootSound, transform.position); // ??
+        
         // particle system
     }
 }
