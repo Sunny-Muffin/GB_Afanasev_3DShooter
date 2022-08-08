@@ -128,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 6758633157789837010, guid: 75d919332647a524da8e44363ebbcd5a, type: 3}
   explosionDamage: 100
+  explosionForce: 10
+  explosionTime: 2
   explosionSound: {fileID: 8300000, guid: 8b3f676fe7b41044495a2964396b8ba3, type: 3}
 --- !u!114 &3922141584247867590
 MonoBehaviour:

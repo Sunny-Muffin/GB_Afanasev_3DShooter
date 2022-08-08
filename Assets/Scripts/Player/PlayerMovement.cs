@@ -15,28 +15,32 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
 
-    Vector3 velocity;
-    bool isGrounded;
+    private Vector3 velocity;
+    private bool isGrounded;
     private bool isRunning;
 
     private const string Horizontal = "Horizontal";
     private const string Vertical = "Vertical";
     private const string Running = "Running";
 
+    private Rigidbody rb;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundChecker.position, 0.4f, groundLayer);
+        /*
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f; // можно 0, но -2 лучше
         }
+        */
 
         float x = Input.GetAxis(Horizontal);
         float z = Input.GetAxis(Vertical);
@@ -47,8 +51,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            //Debug.Log("JUMPING!");
-            velocity.y = Mathf.Sqrt(jumpHeight * -gravity);
+            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+            Debug.Log("JUMPING!");
+            //velocity.y = Mathf.Sqrt(jumpHeight * -gravity);
         }
 
         velocity.y += gravity * Time.deltaTime;
