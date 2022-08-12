@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ExplosionScript : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class ExplosionScript : MonoBehaviour
     [SerializeField] private AudioClip explosionSound;
     private List<GameObject> gameObjects = new List<GameObject>();
 
+
+    private void Start()
+    {
+
+    }
     public void Boom ()
     {
         var exp = Instantiate(explosion, transform.position, Quaternion.identity);
@@ -33,11 +39,8 @@ public class ExplosionScript : MonoBehaviour
 
             if (obj.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
-                Debug.Log($"object {obj.name} has rigidbody");
                 rb.AddForce(explosionVector * explosionForce, ForceMode.Impulse); // добавляем объекту силу по направлению вектора
             }
-
-
 
         }
         //Debug.Log("BOOOM!!");
