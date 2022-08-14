@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class FollowingEnemy : MonoBehaviour
 {
+    [SerializeField] private float waitAfterFollowing = 2f;
     [SerializeField] private Transform[] waypoints;
 
     private NavMeshAgent agent;
@@ -58,11 +59,23 @@ public class FollowingEnemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player")
+        {
             isFollowing = true;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
-            isFollowing =false;
+        {
+            isFollowing = false;
+            StartCoroutine(StopFollowing());
+        }
+    }
+
+    IEnumerator StopFollowing()
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(waitAfterFollowing);
+        agent.isStopped = false; 
     }
 }

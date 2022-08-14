@@ -23,7 +23,6 @@ public class EnemyMovement : MonoBehaviour
         step = speed * Time.deltaTime;
         transform.LookAt(target);
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
-        //Shoot();
     }
 
 

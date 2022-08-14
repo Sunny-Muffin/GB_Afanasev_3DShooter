@@ -127,4 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b71f13c4ef5464fa6d0cd72e458a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 20
   lifetime: 2
+  speed: 20
+  isTurret: 0
+  shooterTag: Player

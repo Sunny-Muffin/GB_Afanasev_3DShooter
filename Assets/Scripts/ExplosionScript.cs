@@ -10,20 +10,16 @@ public class ExplosionScript : MonoBehaviour
     [SerializeField] private float explosionForce;
     [SerializeField] private float explosionTime = 2f;
     [SerializeField] private AudioClip explosionSound;
+    
     private List<GameObject> gameObjects = new List<GameObject>();
 
-
-    private void Start()
-    {
-
-    }
     public void Boom ()
     {
         var exp = Instantiate(explosion, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         ExplosionDamage(explosionDamage);
-        Destroy(gameObject);
         Destroy(exp, explosionTime);
+        Destroy(gameObject);
     }
 
     private void ExplosionDamage (float damage)
@@ -37,30 +33,28 @@ public class ExplosionScript : MonoBehaviour
                 health.Hit(damage);
             }
 
-            if (obj.TryGetComponent<Rigidbody>(out Rigidbody rb))
-            {
-                rb.AddForce(explosionVector * explosionForce, ForceMode.Impulse); // добавляем объекту силу по направлению вектора
-            }
-
+            obj.GetComponent<Rigidbody>().AddForce(explosionVector * explosionForce, ForceMode.Impulse); // добавляем объекту силу по направлению вектора
         }
-        //Debug.Log("BOOOM!!");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        foreach (var obj in gameObjects)
+        if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
-            if (obj.name == other.name)
-                return;
+            foreach (var obj in gameObjects)
+            {
+                if (obj.name == other.name || other.tag == "Bullet")
+                    return;
+            }
+            gameObjects.Add(other.gameObject);
         }
-        gameObjects.Add(other.gameObject);
-        //Debug.Log($"{other.gameObject.name} added to list");
-        
     }
 
     private void OnTriggerExit(Collider other)
     {
         gameObjects.Remove(other.gameObject);
-        //Debug.Log($"{other.gameObject.name} removed from list");
     }
+
+
+
 }

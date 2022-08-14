@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3922141584247867590}
   m_Layer: 0
   m_Name: ExplosiveBarrel
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ CapsuleCollider:
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &2485541547986316625
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 5
   m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
 --- !u!114 &2485541547986316630
 MonoBehaviour:
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 6758633157789837010, guid: 75d919332647a524da8e44363ebbcd5a, type: 3}
   explosionDamage: 100
-  explosionForce: 10
+  explosionForce: 20
   explosionTime: 2
   explosionSound: {fileID: 8300000, guid: 8b3f676fe7b41044495a2964396b8ba3, type: 3}
 --- !u!114 &3922141584247867590
@@ -146,3 +146,4 @@ MonoBehaviour:
   maxHealth: 60
   curHealth: 0
   deathTime: 0
+  explosionPrefab: {fileID: 6758633157789837020, guid: 75d919332647a524da8e44363ebbcd5a, type: 3}

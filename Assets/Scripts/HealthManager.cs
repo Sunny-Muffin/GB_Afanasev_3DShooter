@@ -8,6 +8,8 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float curHealth;
     [SerializeField] private float deathTime;
 
+    [SerializeField] private GameObject explosionPrefab;
+
     private void Awake()
     {
         curHealth = maxHealth;
@@ -35,7 +37,7 @@ public class HealthManager : MonoBehaviour
             Time.timeScale = 0;
             // menu
         }
-        else if(gameObject.TryGetComponent(out ExplosionScript exp))
+        else if(TryGetComponent<ExplosionScript>(out ExplosionScript exp))
         {
             exp.Boom();
         }
