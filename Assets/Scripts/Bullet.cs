@@ -8,12 +8,12 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float lifetime = 2f;
     [SerializeField] private float speed = 20f;
     [SerializeField] private bool isTurret = false;
+    [SerializeField] private string shooterTag;
 
     void Start()
     {
         Destroy(gameObject, lifetime);
     }
-
 
     // Update is called once per frame
     void Update()
@@ -24,13 +24,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         Hit(collision.gameObject);
     }
 
     private void Hit(GameObject collisionGO)
     {
-        if (collisionGO.TryGetComponent(out HealthManager health))
+        if (!collisionGO.CompareTag(shooterTag) && collisionGO.TryGetComponent(out HealthManager health))
         {
             //Debug.Log(collisionGO.gameObject.name);
             // вот тут проблема: пули наносят урон игроку

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Turret : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Turret : MonoBehaviour
 
     private float nextBulletTime;
     private Transform player;
+    private Animator animator;
 
 
     private void Start()
@@ -29,6 +31,7 @@ public class Turret : MonoBehaviour
             Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
             AudioSource.PlayClipAtPoint(shootSound, transform.position); // ??
             nextBulletTime = Time.time + turretCoolDown;
+            //StartCoroutine(PlayAnim());
         }
     }
 
@@ -39,12 +42,17 @@ public class Turret : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(rotation);
     }
 
+    IEnumerator PlayAnim()
+    {
+        animator.SetBool("isShooting", true);
+        yield return new WaitForSeconds(turretCoolDown);
+        animator.SetBool("isShooting", false);
+    }    
+
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("Somethig in trigger");
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            //Debug.Log("Player in trigger");
             Shoot();
             LookAtPlayer();
         }

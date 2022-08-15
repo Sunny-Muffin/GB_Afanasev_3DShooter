@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ExplosionScript : MonoBehaviour
 {
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private float explosionDamage;
+    [SerializeField] private float explosionForce;
     [SerializeField] private float explosionTime = 2f;
     [SerializeField] private AudioClip explosionSound;
+    
     private List<GameObject> gameObjects = new List<GameObject>();
 
     public void Boom ()
@@ -15,40 +18,43 @@ public class ExplosionScript : MonoBehaviour
         var exp = Instantiate(explosion, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         ExplosionDamage(explosionDamage);
-        Destroy(gameObject);
         Destroy(exp, explosionTime);
+        Destroy(gameObject);
     }
 
     private void ExplosionDamage (float damage)
     {
         foreach (var obj in gameObjects)
         {
-            obj.GetComponent<HealthManager>().Hit(damage);
-            //Debug.Log(obj.name);
+            Vector3 explosionVector = obj.transform.position - transform.position; // находим направление от мины до объекта
+
+            if (obj.TryGetComponent(out HealthManager health))
+            {
+                health.Hit(damage);
+            }
+
+            obj.GetComponent<Rigidbody>().AddForce(explosionVector * explosionForce, ForceMode.Impulse); // добавляем объекту силу по направлению вектора
         }
-        //Debug.Log("BOOOM!!");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out HealthManager health))
+        if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             foreach (var obj in gameObjects)
             {
-                if (obj.name == other.name)
+                if (obj.name == other.name || other.tag == "Bullet")
                     return;
             }
             gameObjects.Add(other.gameObject);
-            //Debug.Log($"{other.gameObject.name} added to list");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out HealthManager health))
-        {
-            gameObjects.Remove(other.gameObject);
-            //Debug.Log($"{other.gameObject.name} removed from list");
-        }
+        gameObjects.Remove(other.gameObject);
     }
+
+
+
 }
