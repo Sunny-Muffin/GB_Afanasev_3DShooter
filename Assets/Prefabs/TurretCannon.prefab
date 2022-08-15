@@ -92,6 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8298671097150702922}
+  - component: {fileID: 8608190562644462775}
   m_Layer: 0
   m_Name: TurretCannon
   m_TagString: Untagged
@@ -116,6 +117,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8608190562644462775
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303573105696156372}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7523444695bfca240ba7d24ae1d92c14, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8303585142562625002
 GameObject:
   m_ObjectHideFlags: 0
@@ -5157,6 +5178,7 @@ GameObject:
   - component: {fileID: 8303123531930609184}
   - component: {fileID: 8303123531930609214}
   - component: {fileID: 8303123531930609215}
+  - component: {fileID: 9193877119679000871}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -5318,6 +5340,7 @@ MonoBehaviour:
   maxHealth: 120
   curHealth: 0
   deathTime: 0
+  explosionPrefab: {fileID: 0}
 --- !u!114 &8303123531930609215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5336,3 +5359,23 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
   turretCoolDown: 1.5
   angularSpeed: 0.5
+--- !u!95 &9193877119679000871
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304608532696410040}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7523444695bfca240ba7d24ae1d92c14, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
