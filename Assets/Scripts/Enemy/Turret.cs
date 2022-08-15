@@ -14,6 +14,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private float angularSpeed = 0.5f;
 
     private float nextBulletTime;
+    private bool isShooting = false;
     private Transform player;
     private Animator animator;
 
@@ -21,8 +22,10 @@ public class Turret : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindObjectOfType<PlayerMovement>().transform;
+        animator = GetComponentInChildren<Animator>();
     }
 
+    /*
     private void Shoot()
     {
         if (Time.time > nextBulletTime)
@@ -34,6 +37,18 @@ public class Turret : MonoBehaviour
             //StartCoroutine(PlayAnim());
         }
     }
+    */
+
+    IEnumerator Shoot()
+    {
+        isShooting = true;
+        animator.Play("TurretShooting");
+        muzzleFlash.Play();
+        Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
+        AudioSource.PlayClipAtPoint(shootSound, transform.position); // ??
+        yield return new WaitForSeconds(turretCoolDown);
+        isShooting = false;
+    }
 
     private void LookAtPlayer()
     {
@@ -42,19 +57,23 @@ public class Turret : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(rotation);
     }
 
+    /*
     IEnumerator PlayAnim()
     {
         animator.SetBool("isShooting", true);
         yield return new WaitForSeconds(turretCoolDown);
         animator.SetBool("isShooting", false);
-    }    
+    }
+    */
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Shoot();
+            //Shoot();
             LookAtPlayer();
+            if (!isShooting)
+                StartCoroutine(Shoot());
         }
     }
 }
