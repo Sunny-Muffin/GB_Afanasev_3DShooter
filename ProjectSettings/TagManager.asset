@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Bullet
   - Barrel
+  - Turret
+  - ExitLevel
   layers:
   - Default
   - TransparentFX

@@ -38,9 +38,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
-        isGrounded = Physics.CheckSphere(groundChecker.position, 0.4f, groundLayer);
+        isGrounded = Physics.CheckSphere(groundChecker.position, 0.6f, groundLayer);
         isRunning = Input.GetButton(Running);
 
         float x = Input.GetAxis(Horizontal);
