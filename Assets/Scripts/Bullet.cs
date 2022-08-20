@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
     private void Hit(GameObject collisionGO)
     {
-        if (!collisionGO.CompareTag(shooterTag) && collisionGO.TryGetComponent(out HealthManager health))
+        if (collisionGO.TryGetComponent(out HealthManager health) && !collisionGO.CompareTag(shooterTag))
         {
             //Debug.Log(collisionGO.gameObject.name);
             // вот тут проблема: пули наносят урон игроку

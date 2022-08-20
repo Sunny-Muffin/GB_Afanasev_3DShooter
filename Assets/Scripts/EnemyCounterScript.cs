@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class EnemyCounterScript : MonoBehaviour
 {
-    [SerializeField] private int enemiesCount = 10;
+    [SerializeField] private int enemiesCount = 3;
+    private static GameObject ExitLevel;
     private static int enemies = 0;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        ExitLevel = GameObject.FindGameObjectWithTag("ExitLevel");
         enemies = enemiesCount;
+        ExitLevel.SetActive(false);
+
         //Debug.Log(enemies);
     }
 
@@ -23,10 +28,12 @@ public class EnemyCounterScript : MonoBehaviour
     public static void EnemyKilled ()
     {
         enemies--;
-        if (enemies < 0)
+        if (enemies <= 0)
         {
             enemies = 0;
-            Debug.Log("You Win");
+            Debug.Log("You Win!");
+            ExitLevel.SetActive(true);
         }
     }
+
 }

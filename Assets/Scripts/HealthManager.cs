@@ -42,7 +42,14 @@ public class HealthManager : MonoBehaviour
             exp.Boom();
         }
         else
+        {
+            if (gameObject.tag == "Turret")
+            {
+                EnemyCounterScript.EnemyKilled();
+            }
             Destroy(gameObject);
+        }
+            
     }
 
     public void AddHealth(float plusHP)
