@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
@@ -9,22 +10,30 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float deathTime;
 
     [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private Scrollbar scrollbar;
 
     private void Awake()
     {
         curHealth = maxHealth;
+        if (scrollbar)
+        {
+            scrollbar.size = curHealth / maxHealth;
+        }
     }
 
     public void Hit(float damage)
     {
         curHealth -= damage;
-        if(curHealth <= 0)
-        { 
+        if (scrollbar)
+        {
+            scrollbar.size = curHealth / maxHealth;
+        }
+        if (curHealth <= 0)
+        {
             curHealth = 0;
             // make coroutine
             Death();
         }
-
     }
 
     private void Death()
@@ -35,7 +44,7 @@ public class HealthManager : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             Time.timeScale = 0;
-            // menu
+            // death menu
         }
         else if(TryGetComponent<ExplosionScript>(out ExplosionScript exp))
         {
