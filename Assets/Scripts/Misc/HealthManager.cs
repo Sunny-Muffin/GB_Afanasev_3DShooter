@@ -52,10 +52,6 @@ public class HealthManager : MonoBehaviour
         }
         else
         {
-            if (gameObject.tag == "Turret")
-            {
-                EnemyCounterScript.EnemyKilled();
-            }
             Destroy(gameObject);
         }
             

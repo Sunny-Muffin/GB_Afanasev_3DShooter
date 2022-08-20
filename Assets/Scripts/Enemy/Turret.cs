@@ -25,20 +25,6 @@ public class Turret : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    /*
-    private void Shoot()
-    {
-        if (Time.time > nextBulletTime)
-        {
-            muzzleFlash.Play();
-            Instantiate(bulletPrefab, spawnPoint.position, spawnPoint.rotation);
-            AudioSource.PlayClipAtPoint(shootSound, transform.position); // ??
-            nextBulletTime = Time.time + turretCoolDown;
-            //StartCoroutine(PlayAnim());
-        }
-    }
-    */
-
     IEnumerator Shoot()
     {
         isShooting = true;
@@ -56,15 +42,6 @@ public class Turret : MonoBehaviour
         Vector3 rotation = Vector3.RotateTowards(transform.forward, direction, angularSpeed * Time.deltaTime, 0f);
         transform.rotation = Quaternion.LookRotation(rotation);
     }
-
-    /*
-    IEnumerator PlayAnim()
-    {
-        animator.SetBool("isShooting", true);
-        yield return new WaitForSeconds(turretCoolDown);
-        animator.SetBool("isShooting", false);
-    }
-    */
 
     private void OnTriggerStay(Collider other)
     {

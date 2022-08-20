@@ -5199,6 +5199,7 @@ GameObject:
   - component: {fileID: 8303123531930609184}
   - component: {fileID: 8303123531930609214}
   - component: {fileID: 8303123531930609215}
+  - component: {fileID: 9160135595367554454}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -5361,6 +5362,7 @@ MonoBehaviour:
   curHealth: 0
   deathTime: 0
   explosionPrefab: {fileID: 0}
+  scrollbar: {fileID: 0}
 --- !u!114 &8303123531930609215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5379,3 +5381,20 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
   turretCoolDown: 1.5
   angularSpeed: 0.5
+--- !u!114 &9160135595367554454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8304608532696410040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2450435daac2a24db9679390127de5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosion: {fileID: 6758633157789837010, guid: 75d919332647a524da8e44363ebbcd5a, type: 3}
+  explosionDamage: 20
+  explosionForce: 20
+  explosionTime: 2
+  explosionSound: {fileID: 8300000, guid: 8524588a69a4f3e40bb597b6221138f1, type: 3}
