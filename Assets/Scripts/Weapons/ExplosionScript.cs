@@ -15,6 +15,10 @@ public class ExplosionScript : MonoBehaviour
 
     public void Boom ()
     {
+        if (gameObject.tag == "Turret")
+        {
+            EnemyCounterScript.EnemyKilled();
+        }
         var exp = Instantiate(explosion, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         ExplosionDamage(explosionDamage);
@@ -26,6 +30,8 @@ public class ExplosionScript : MonoBehaviour
     {
         foreach (var obj in gameObjects)
         {
+            if (obj != null)
+            {
             Vector3 explosionVector = obj.transform.position - transform.position; // находим направление от мины до объекта
 
             if (obj.TryGetComponent(out HealthManager health))
@@ -34,6 +40,7 @@ public class ExplosionScript : MonoBehaviour
             }
 
             obj.GetComponent<Rigidbody>().AddForce(explosionVector * explosionForce, ForceMode.Impulse); // добавляем объекту силу по направлению вектора
+            }
         }
     }
 
@@ -41,10 +48,9 @@ public class ExplosionScript : MonoBehaviour
     {
         if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
-            foreach (var obj in gameObjects)
+            if (other.tag == "Bullet")
             {
-                if (obj.name == other.name || other.tag == "Bullet")
-                    return;
+                return;
             }
             gameObjects.Add(other.gameObject);
         }
@@ -54,7 +60,5 @@ public class ExplosionScript : MonoBehaviour
     {
         gameObjects.Remove(other.gameObject);
     }
-
-
 
 }
